@@ -43,6 +43,23 @@ def Dailywage():
     '''
     dailywage = 20
     hours = 8
-    employeedailywage = dailywage *hours
-    print(employeedailywage)
+    Employee_daily_wage = dailywage *hours
+    print(Employee_daily_wage)
 
+
+def PartTime():
+    '''Description:
+    Function that caluculate the part time employee wage.
+
+    Parameters:
+    - None.
+    Returns:
+    -None.
+    '''
+    wage_Hour = 20
+
+    hours = 4
+
+    Employee_Part_wage =wage_Hour* hours
+    
+    print(Employee_Part_wage)
