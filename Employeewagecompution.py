@@ -10,4 +10,9 @@ def CheckAttendance():
         print(f"the employe is absent")
     
 
-CheckAttendance()
+def Dailywage():
+    dailywage = 20
+    hours = 8
+    employeedailywage = dailywage *hours
+    print(employeedailywage)
+
