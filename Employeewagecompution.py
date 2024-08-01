@@ -1,13 +1,14 @@
 '''
-@Author: v sanjay kumar
-@Date: 2024-07-30 03:00:30
-@Last Modified by: v sanjay kumar
-@Last Modified time: 2024-07-30 03:00:30
-@Title : Employee wage problems
+    @Author: v sanjay kumar
+    @Date: 2024-07-30 03:00:30
+    @Last Modified by: v sanjay kumar
+    @Last Modified time: 2024-07-30 03:00:30
+    @Title : Employee wage problems
 
 '''
 import random
 
+print("Welcome to Employee Wage Computation")
 
 def CheckAttendance():
     
@@ -21,14 +22,16 @@ def CheckAttendance():
     -None.
     """
 
-    attendnce =random.choice((0,1))
-    print(attendnce)
+    attendnce =random.randint(0,2)
 
     if attendnce == 1:
-        print(f"the employe is present")
+        return 'full time'
+    elif attendnce == 2:
+        return 'part time'
     else:
-        print(f"the employe is absent")
-    
+        return "Employee is absent"
+
+        
 
 
 
@@ -45,7 +48,6 @@ def Dailywage():
     dailywage = 20
     hours = 8
     Employee_daily_wage = dailywage *hours
-    print("Employee daily wage : " ,Employee_daily_wage)
     return Employee_daily_wage
 
 
@@ -60,11 +62,9 @@ def PartTime():
     '''
     wage_Hour = 20
 
-    hours = 4
-
     Employee_Part_wage =wage_Hour* hours
 
-    print(Employee_Part_wage)
+    return Employee_Part_wage
 
 
 def monthlywage():
@@ -79,5 +79,29 @@ def monthlywage():
     print( "Employee monthly wage",Dailywage()*20)
 
 
+def main():
+    print("Choose Your Choice ")
+    print("1 - Check the attendence of employee")
+    print("2 - Check the parttime wage of employee")
+    print("3 - Check the full time wage of employee")
+    print("4 - Check the monthly wage of employee")
+    print("5 - Exit ")
+    chioce =int(input("Enter your Choice :",))
+    
 
-monthlywage()
+    while True:
+        match chioce:
+            case 1:
+                CheckAttendance()
+            case 2:
+                PartTime()
+            case 3:
+                Dailywage()
+            case 4:
+                monthlywage()
+            case 5:
+                exit()
+
+
+if __name__ =="__main__": 
+    main()
