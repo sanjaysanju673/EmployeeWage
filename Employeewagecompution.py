@@ -3,7 +3,8 @@
 @Date: 2024-07-30 03:00:30
 @Last Modified by: v sanjay kumar
 @Last Modified time: 2024-07-30 03:00:30
-@Title : 
+@Title : Employee wage problems
+
 '''
 import random
 
@@ -44,7 +45,8 @@ def Dailywage():
     dailywage = 20
     hours = 8
     Employee_daily_wage = dailywage *hours
-    print(Employee_daily_wage)
+    print("Employee daily wage : " ,Employee_daily_wage)
+    return Employee_daily_wage
 
 
 def PartTime():
@@ -61,5 +63,21 @@ def PartTime():
     hours = 4
 
     Employee_Part_wage =wage_Hour* hours
-    
+
     print(Employee_Part_wage)
+
+
+def monthlywage():
+    '''Description:
+    Function that caluculate the part time employee wage.
+
+    Parameters:
+    - None.
+    Returns:
+    -None.
+    '''
+    print( "Employee monthly wage",Dailywage()*20)
+
+
+
+monthlywage()
