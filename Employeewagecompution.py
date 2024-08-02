@@ -1,20 +1,24 @@
 '''
-@Author: v sanjay kumar
-@Date: 2024-07-22 02:00:30
-@Last Modified by: v sanjay kumar
-@Last Modified time: 2024-07-22 02:00:30
-@Title : Employee wage
+    @Author: v sanjay kumar
+    @Date: 2024-07-22 02:00:30
+    @Last Modified by: v sanjay kumar
+    @Last Modified time: 2024-07-22 02:00:30
+    @Title : Employee wage problem
 '''
 
+
 import random
-import abc
+
 class EmployeeWageComputation:
-    def __init__(self,working_hours_per_month,wage_per_hour,no_of_working_days):
-        self.wage_per_hour= wage_per_hour
+    def __init__(self):
         self.full_time_hours = 8
         self.part_time_hours = 4
-        self.no_of_working_days = no_of_working_days
-        self.working_hours_per_month =working_hours_per_month
+
+    @classmethod
+    def set_company_parameters(cls, wage_per_hour, working_hours_per_month, no_of_working_days):
+        cls.wage_per_hour = wage_per_hour
+        cls.working_hours_per_month = working_hours_per_month
+        cls.no_of_working_days = no_of_working_days
 
     def check_attendance(self):
         """
@@ -48,16 +52,7 @@ class EmployeeWageComputation:
         Returns:
         - Employee's wage for part-time work
         """
-        return self.wage_per_hour* self.part_time_hours
-
-    def monthly_wage(self):
-        """
-        Calculate the monthly employee wage assuming full time work for 20 days.
-
-        Returns:
-        - Employee's monthly wage for full time work
-        """
-        return self.daily_wage() * 20
+        return self.wage_per_hour * self.part_time_hours
 
     def condition_wages(self):
         """
@@ -71,7 +66,7 @@ class EmployeeWageComputation:
         total_wage = 0
         all_monthly_wages = []
 
-        while total_hours <= self.working_hours_per_month and total_days <self.no_of_working_days:
+        while total_hours <= self.working_hours_per_month and total_days < self.no_of_working_days:
             attendance = self.check_attendance()
             if attendance == 'full time':
                 total_hours += self.full_time_hours
@@ -88,15 +83,28 @@ class EmployeeWageComputation:
             else:
                 all_monthly_wages.append(0)
                 
-            total_days +=1   
-        print("Total Wage of Employee in $",total_wage)
+            total_days += 1   
+        print("Total Wage of Employee in $", total_wage)
         return all_monthly_wages
 
-    def main(self):
+    
+       
+
+if __name__ == "__main__":
+    company_params = [
+        {'name': 'Bluestock', 'wage_per_hour': 20, 'working_hours_per_month': 100, 'no_of_working_days': 20},
+        {'name': 'netflix', 'wage_per_hour': 22, 'working_hours_per_month': 110, 'no_of_working_days': 22},
+        {'name':  'bharathi cement','wage_per_hour':44,'working_hours_per_month':120, 'no_of_working_days':45}
+    ]
+
+    for params in company_params:
+        print(f"\nCalculating wages for {params['name']}")
+        EmployeeWageComputation.set_company_parameters(
+            params['wage_per_hour'],
+            params['working_hours_per_month'],
+            params['no_of_working_days']
+        )
+        employee_wage_computation = EmployeeWageComputation()
         print("-----------------------------------------")
         print("Welcome to Employee Wage Computation")
-        
-if __name__ == "__main__":
-    employee_wage_computation = EmployeeWageComputation(100,20,20)
-    employee_wage_computation.main()
-    print("The monthly wages of employee =",employee_wage_computation.condition_wages())
+        print(f"The monthly wages of employee for {params['name']} =", employee_wage_computation.condition_wages())
