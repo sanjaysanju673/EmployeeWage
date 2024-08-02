@@ -1,107 +1,109 @@
-'''
-    @Author: v sanjay kumar
-    @Date: 2024-07-30 03:00:30
-    @Last Modified by: v sanjay kumar
-    @Last Modified time: 2024-07-30 03:00:30
-    @Title : Employee wage problems
-
-'''
 import random
 
-print("Welcome to Employee Wage Computation")
+daily_wage_rate = 20
+full_time_hours = 8
+part_time_hours = 4
 
-def CheckAttendance():
-    
+def check_attendance():
     """
-    Description:
-    Function that check the attendence for employee.
+    Check the attendance for an employee.
 
-    Parameters:
-    - None.
     Returns:
-    -None.
+    - 'full time' if employee is present full time
+    - 'part time' if employee is present part time
     """
-
-    attendnce =random.randint(0,2)
-
-    if attendnce == 1:
+    attendance = random.randint(0, 2)
+    if attendance == 1:
         return 'full time'
-    elif attendnce == 2:
+    elif attendance == 2:
         return 'part time'
     else:
-        return "Employee is absent"
+        return 'absent'
 
-        
+def daily_wage():
+    """
+    Calculate the daily employee wage for full time.
 
-
-
-def Dailywage():
-    
-    '''Description:
-    Function that caluculate the daily employe wage.
-
-    Parameters:
-    - None.
     Returns:
-    -None.
-    '''
-    dailywage = 20
-    hours = 8
-    Employee_daily_wage = dailywage *hours
-    return Employee_daily_wage
+    - Employee's daily wage for full time work
+    """
+    return daily_wage_rate * full_time_hours
 
+def part_time_wage():
+    """
+    Calculate the part-time employee wage.
 
-def PartTime():
-    '''Description:
-    Function that caluculate the part time employee wage.
-
-    Parameters:
-    - None.
     Returns:
-    -None.
-    '''
-    wage_Hour = 20
+    - Employee's wage for part-time work
+    """
+    return daily_wage_rate * part_time_hours
 
-    Employee_Part_wage =wage_Hour* hours
+def monthly_wage():
+    """
+    Calculate the monthly employee wage assuming full time work for 20 days.
 
-    return Employee_Part_wage
-
-
-def monthlywage():
-    '''Description:
-    Function that caluculate the part time employee wage.
-
-    Parameters:
-    - None.
     Returns:
-    -None.
-    '''
-    print( "Employee monthly wage",Dailywage()*20)
+    - Employee's monthly wage for full time work
+    """
+    return daily_wage() * 20
 
+def condition_wages():
+    """
+    Calculate wages based on attendance for a month (maximum 20 days or 100 hours).
+
+    Returns:
+    - List of daily wages for the month
+    """
+    total_hours = 0
+    total_days = 0
+    total_wage = 0
+    all_monthly_wages = []
+
+    while total_hours <= 100 and total_days < 20:
+        attendance = check_attendance()
+        if attendance == 'full time':
+            total_hours += full_time_hours
+            daily_wage_amount = daily_wage()
+            total_wage += daily_wage_amount
+            all_monthly_wages.append(daily_wage_amount)
+            
+        elif attendance == 'part time':
+            total_hours += part_time_hours
+            part_time_wage_amount = part_time_wage()
+            total_wage += part_time_wage_amount
+            all_monthly_wages.append(part_time_wage_amount)
+        else:
+            all_monthly_wages.append(0)
+        total_days +=1
+    total_wage
+
+    return all_monthly_wages,total_wage
 
 def main():
-    print("Choose Your Choice ")
-    print("1 - Check the attendence of employee")
-    print("2 - Check the parttime wage of employee")
-    print("3 - Check the full time wage of employee")
-    print("4 - Check the monthly wage of employee")
-    print("5 - Exit ")
-    chioce =int(input("Enter your Choice :",))
-    
-
+    print("Welcome to Employee Wage Computation")
     while True:
-        match chioce:
-            case 1:
-                CheckAttendance()
-            case 2:
-                PartTime()
-            case 3:
-                Dailywage()
-            case 4:
-                monthlywage()
-            case 5:
-                exit()
+        print("Choose Your Choice:")
+        print("1 - Check the attendance of employee")
+        print("2 - Check the part-time wage of employee")
+        print("3 - Check the full-time wage of employee")
+        print("4 - Check the monthly wage of employee")
+        print("5 - Exit")
+        choice = int(input("Enter your choice: "))
 
+        if choice == 1:
+            print("The employee attendence is",check_attendance())
+        elif choice == 2:
+            print("The part Time wage of employee",part_time_wage())
+        elif choice == 3:
+            print("The full time wage of employee",daily_wage())
+        elif choice == 4:
+            monthly_wages,total_wage=condition_wages()
+            print("The monthly wages of employee is",monthly_wages)
+            print("The total wage of Employee is (per month)&:",total_wage)
+        elif choice == 5:
+            break
+        else:
+            print("Invalid choice, please try again.")
 
-if __name__ =="__main__": 
+if __name__ == "__main__":
     main()
